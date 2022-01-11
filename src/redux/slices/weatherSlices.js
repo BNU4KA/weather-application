@@ -5,10 +5,14 @@ import axios from 'axios';
 export const fetchWeatherAction = createAsyncThunk(
     'weather/fetch',
     async (payload, {rejectWithValue, getState, dispatch})=>{
-    try {
-        const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${payload}&appid=${process.env.REACT_APP_OPEN_WEAHTER_KEY}`)
-        return data;
-    } catch (error) {}
+        try {
+            // const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${payload}&units=metric&appid=${process.env.REACT_APP_OPEN_WEAHTER_KEY}`)
+            // const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${payload}&units=metric&appid=${process.env.REACT_APP_OPEN_WEAHTER_WEEK_KEY}`)
+            const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?id=${payload}&units=metric&appid=${process.env.REACT_APP_OPEN_WEAHTER_WEEK_KEY}`)
+            // const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${payload}&units=metric&appid=${process.env.REACT_APP_OPEN_WEAHTER_WEEK_KEY}`)
+            // const {weekData} = await axios.get(`https://pro.openweathermap.org/data/2.5/forecast/hourly?id=${payload}&appid=${process.env.REACT_APP_OPEN_WEAHTER_WEEK_KEY}`)
+            return (data);
+        } catch (error) {}
     }
 );
 
